@@ -8,8 +8,8 @@ router.get("/", todosController.getAllTodos); // /todos
 
 router.post("/", todosController.addTodo);
 
-//router.patch();
+router.patch("/:id", todosController.updateTodo); // /:id is a dynamic path parameter
 
-//router.delete();
+router.delete("/:id", todosController.deleteTodo);
 
 module.exports = router;
