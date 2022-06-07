@@ -32,9 +32,34 @@ async function addTodo(req, res, next) {
   res.json({ message: "Added todo successfully!", createdTodo: todo });
 }
 
-function updateTodo(req, res, next) {}
+ async function updateTodo(req, res, next) {
+  const todoId = req.params.id; // grabbing the id from params.id
+  const newTodoText = req.body.newText; // grabbing new text that is entered when trying to update
 
-function deleteTodo(req, res, next) {}
+  const todo = new Todo(newTodoText, todoId); // creating a new todo object with the two given values
+
+  try {
+    await todo.save();
+  } catch (error){
+    return next(error);
+  }
+
+  res.json({message: "Todo updated", updatedTodo: todo}); // json response saying it succeeded
+}
+
+async function deleteTodo(req, res, next) {
+  const todoId = req.params.id; // grabbing the id from params.id
+
+  const todo = new Todo(null, todoId); // creating a new todo object with the two given values
+
+  try {
+    await todo.delete(); // returns a promise, thus we are awaiting it
+  } catch (error){
+    return next(error);
+  }
+
+  res.json({message: "Todo buhleeted"}); // json response saying it succeeded
+}
 
 module.exports = {
   getAllTodos: getAllTodos,
