@@ -2,9 +2,11 @@ const express = require("express");
 
 const db = require("./data/database");
 const todosRoutes = require("./routes/todos.routes");
+const enableCors = require("./middlewares/cors");
 
 const app = express();
 
+app.use(enableCors); // called by express for each incoming request
 app.use(express.json()); // parses incoming requests with JSON payloads. looks at reqs where content type header matches the type option. it puts the parsed data into req.body
 
 app.use("/todos", todosRoutes); // filter, those that have the prefix todos will go to todosRoutes

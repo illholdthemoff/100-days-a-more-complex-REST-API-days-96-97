@@ -38,7 +38,7 @@ class Todo {
 
     const todoId = new mongodb.ObjectId(this.id); // same process as above
 
-    return db.getDb.collection("todos").deleteOne({ _id: todoId }); // going in and deleting the record with id that matches.
+    return db.getDb().collection("todos").deleteOne({ _id: todoId }); // going in and deleting the record with id that matches.
   }
 }
 

@@ -32,7 +32,7 @@ async function addTodo(req, res, next) {
   res.json({ message: "Added todo successfully!", createdTodo: todo });
 }
 
- async function updateTodo(req, res, next) {
+async function updateTodo(req, res, next) {
   const todoId = req.params.id; // grabbing the id from params.id
   const newTodoText = req.body.newText; // grabbing new text that is entered when trying to update
 
@@ -40,11 +40,11 @@ async function addTodo(req, res, next) {
 
   try {
     await todo.save();
-  } catch (error){
+  } catch (error) {
     return next(error);
   }
 
-  res.json({message: "Todo updated", updatedTodo: todo}); // json response saying it succeeded
+  res.json({ message: "Todo updated", updatedTodo: todo }); // json response saying it succeeded
 }
 
 async function deleteTodo(req, res, next) {
@@ -54,11 +54,11 @@ async function deleteTodo(req, res, next) {
 
   try {
     await todo.delete(); // returns a promise, thus we are awaiting it
-  } catch (error){
+  } catch (error) {
     return next(error);
   }
 
-  res.json({message: "Todo buhleeted"}); // json response saying it succeeded
+  res.json({ message: "Todo deleted" }); // json response saying it succeeded
 }
 
 module.exports = {
